@@ -6,7 +6,7 @@ WriteMakefile
 (
 	($] ge '5.005') ?
 	(
-		'AUTHOR' => 'Ron Savage (rpsavage@ozemail.com.au)',
+		'AUTHOR' => 'Ron Savage (ron@savage.net.au)',
 		'ABSTRACT' => 'Find the infinitive form of a conjugated word',
     ) : (),
 'clean'				=>

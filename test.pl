@@ -43,16 +43,16 @@ while (<DATA>)
 
 	# Or:
 	#	$spell -> stem($word);
-	#	$prefix1	= $spell -> {'prefix1'}";
-	#	$prefix2	= $spell -> {'prefix2'};
+	#	$prefix1	= $spell -> {'word1'}";
+	#	$prefix2	= $spell -> {'word2'};
 	#	$suffix		= $spell -> {'suffix'};
 	#	$rule		= $spell -> {'rule'};
 
 	# Print some by accessing the data in the alternate manner.
 	if ( ($debug) && ($rule eq '1') )
 	{
-		print "prefix1: $spell->{'prefix1'}\n";
-		print "prefix2: $spell->{'prefix2'}\n";
+		print "prefix1: $spell->{'word1'}\n";
+		print "prefix2: $spell->{'word2'}\n";
 		print "suffix:  $spell->{'suffix'}\n";
 		print "rule:    $spell->{'rule'}\n";
 	}
@@ -103,6 +103,16 @@ __DATA__
 14b			strongest		strong
 15			living			live
 15			laughing		laugh
+15			swaying			sway
+15			catching		catch
+15			smiling			smile
+15			swimming		swim
+15			running			run
+15			floating		float
+15			keyboarding		keyboard
+15			wrestling		wrestle
+15			traveling		travel
+15			traipsing		traipse
 16			stylist			style
 16			dentist			dent
 17			cubism			cube

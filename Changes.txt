@@ -1,16 +1,26 @@
 Revision history for Perl extension Lingua-EN-Infinitive.
 
-1.03 26-May-99
---------------
+1.04 19-Jun-2001
+----------------
+o Patch outcome of rule 15 so certain monosyllables are treated specially.
+	Eg swimming => swim and swimm, not swimme and swimm.
+	Thanks to Mike Tsai for drawing this problem to my attention.
+	Previous testing had completely overlooked these types of words.
+o Researching this problem reveals that, unfortunately, American spelling
+	such as traveling => travel is handled correctly but British spelling
+	such as travelling => travel is not.
+
+1.03 26-May-1999
+----------------
 o Ensure POD survives buggy pod2man
 o Ship Readme.txt, the output of pod2text
 
-1.02 19-Apr-99
---------------
+1.02 19-Apr-1999
+----------------
 o Patch Makefile.pl to support ActivePerl's ppm.
 
-1.01 30-May-99
---------------
+1.01 30-May-1999
+----------------
 o Original version; created by h2xs 1.18
 
 Use h2xs to generate the skeleton for Infinitive.pm.

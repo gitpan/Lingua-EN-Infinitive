@@ -16,7 +16,7 @@ require Exporter;
 
 @EXPORT_OK	= qw();
 
-$VERSION	= '1.03';
+$VERSION	= '1.04';
 
 # Preloaded methods go here.
 # -------------------------------------------------------------------
@@ -1107,6 +1107,11 @@ sub stem
 		}
 	}
 
+#	for $i (sort keys %prefix)
+#	{
+#		print ".Suffix: $i. Prefixes: ", join(' | ', sort @{$prefix{$i} }), ". \n";
+#	}
+	
 	my($lastIndex);
 
 	for $suffix (
@@ -1157,6 +1162,25 @@ sub stem
 				$self -> {'word2'}	= ''
 			}
 
+			# Rule 15: Strip off 'ing'.
+
+			if ($self -> {'rule'} eq '15')
+			{
+				# Do we have a monosyllable of this form:
+				# o 0+ Consonants
+				# o 1+ Vowel
+				# o	1 Non-wx
+				# o 1 Non-wx
+				# Eg: swimming => swimm?
+				# Then return swim and swimm.
+
+				if ($self -> {'word2'} =~ /^([^aeiou]*[aeiou]+)([^wx])\2$/)
+				{
+					$self -> {'word1'} = "$1$2";
+					$self -> {'word2'} = "$1$2$2";
+				}
+			}
+			
 			return ($self -> {'word1'}, $self -> {'word2'}, $suffix, $self -> {'rule'});
 		}
 	}
@@ -1260,7 +1284,7 @@ Don't make the false assumption that
 
 =head1 AUTHOR
 
-C<Lingua::EN::Infinitive> was written by Ron Savage I<E<lt>rpsavage@ozemail.com.auE<gt>> in 1998.
+C<Lingua::EN::Infinitive> was written by Ron Savage I<E<lt>ron@savage.net.auE<gt>> in 1998.
 
 =head1 LICENCE
 

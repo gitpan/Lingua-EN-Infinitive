@@ -85,7 +85,7 @@ REFERENCE
 
 AUTHOR
     `Lingua::EN::Infinitive' was written by Ron Savage
-    *<rpsavage@ozemail.com.au>* in 1998.
+    *<ron@savage.net.au>* in 1998.
 
 LICENCE
     This program is free software; you can redistribute it and/or
