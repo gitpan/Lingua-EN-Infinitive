@@ -1,6 +1,26 @@
 package Lingua::EN::Infinitive;
 
-use integer;
+# Name:
+#	Lingua::EN::Infinitive.
+#
+# Documentation:
+#	POD-style documentation is at the end. Extract it with pod2html.*.
+#
+# Tabs:
+#	4 spaces || die.
+#
+# Author:
+#	Ron Savage <ron@savage.net.au>
+#	Home page: http://savage.net.au/index.html
+#
+# Licence:
+#	Australian copyright (c) 1999-2002 Ron Savage.
+#
+#	All Programs of mine are 'OSI Certified Open Source Software';
+#	you can redistribute them and/or modify them under the terms of
+#	The Artistic License, a copy of which is available at:
+#	http://www.opensource.org/licenses/index.html
+
 use strict;
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
@@ -16,7 +36,7 @@ require Exporter;
 
 @EXPORT_OK	= qw();
 
-$VERSION	= '1.04';
+$VERSION	= '1.06';
 
 # Preloaded methods go here.
 # -------------------------------------------------------------------
@@ -118,6 +138,7 @@ sub new
 		'dealt'				=> 'deal',
 		'did'				=> 'do',
 		'done'				=> 'do',
+		'dove'				=> 'dive',
 		'drank'				=> 'drink',
 		'drawn'				=> 'draw',
 		'dreamed'			=> 'dream',
@@ -383,6 +404,7 @@ sub new
 		'smelt'				=> 'smell',
 		'smitten'			=> 'smite',
 		'smote'				=> 'smite',
+		'snuck'				=> 'sneak',
 		'sold'				=> 'sell',
 		'sought'			=> 'seek',
 		'sowed'				=> 'sow',
@@ -519,6 +541,7 @@ sub new
 		'wetted'			=> 'wet',
 		'winded'			=> 'wind',
 		'wist'				=> 'wit',
+		'wot'				=> 'wit',
 		'withdrawn'			=> 'withdraw',
 		'withdrew'			=> 'withdraw',
 		'withheld'			=> 'withhold',
@@ -708,7 +731,7 @@ sub new
 		'ed'		=>
 			{
 				'order'		=> 1122,
-				'rule'		=> '12b',
+				'rule'		=> '12b',	# There is extra code for 12b below.
 				'word1'		=> 0,	# Longest prefix.
 				'suffix1'	=> '',
 				'suffix2'	=> '',
@@ -725,7 +748,7 @@ sub new
 			{
 				'order'		=> 1142,
 				'rule'		=> '14b',
-				'word1'		=> -2,	# Shortest prefix.
+				'word1'		=> -2,	# Shortest prefix + a letter, and shortest prefix.
 				'suffix1'	=> 'e',
 				'suffix2'	=> '',
 			},
@@ -764,8 +787,8 @@ sub new
 		'ing'		=>
 			{
 				'order'		=> 1151,
-				'rule'		=> '15',
-				'word1'		=> -2,	# Shortest prefix.
+				'rule'		=> '15',	# There is extra code for 15 below.
+				'word1'		=> -2,	# Shortest prefix + a letter, and shortest prefix.
 				'suffix1'	=> 'e',
 				'suffix2'	=> '',
 			},
@@ -773,7 +796,7 @@ sub new
 			{
 				'order'		=> 1161,
 				'rule'		=> '16',
-				'word1'		=> -2,	# Shortest prefix.
+				'word1'		=> -2,	# Shortest prefix + a letter, and shortest prefix.
 				'suffix1'	=> 'e',
 				'suffix2'	=> '',
 			},
@@ -781,7 +804,7 @@ sub new
 			{
 				'order'		=> 1171,
 				'rule'		=> '17',
-				'word1'		=> -2,	# Shortest prefix.
+				'word1'		=> -2,	# Shortest prefix + a letter, and shortest prefix.
 				'suffix1'	=> 'e',
 				'suffix2'	=> '',
 			},
@@ -789,7 +812,7 @@ sub new
 			{
 				'order'		=> 1181,
 				'rule'		=> '18',
-				'word1'		=> -2,	# Shortest prefix.
+				'word1'		=> -2,	# Shortest prefix + a letter, and shortest prefix.
 				'suffix1'	=> 'e',
 				'suffix2'	=> '',
 			},
@@ -797,7 +820,7 @@ sub new
 			{
 				'order'		=> 1191,
 				'rule'		=> '19',
-				'word1'		=> -2,	# Shortest prefix.
+				'word1'		=> -2,	# Shortest prefix + a letter, and shortest prefix.
 				'suffix1'	=> 'e',
 				'suffix2'	=> '',
 			},
@@ -821,7 +844,7 @@ sub new
 			{
 				'order'		=> 1203,
 				'rule'		=> '20c',
-				'word1'		=> -2,	# Shortest prefix.
+				'word1'		=> -2,	# Shortest prefix + a letter, and shortest prefix.
 				'suffix1'	=> 'e',
 				'suffix2'	=> '',
 			},
@@ -885,7 +908,7 @@ sub new
 			{
 				'order'		=> 1321,
 				'rule'		=> '32',
-				'word1'		=> -3,	# Shortest prefix.
+				'word1'		=> -3,	# Shortest prefix + meter, and shortest perfix + metre.
 				'suffix1'	=> 'meter',
 				'suffix2'	=> 'metre',
 			},
@@ -1109,9 +1132,9 @@ sub stem
 
 #	for $i (sort keys %prefix)
 #	{
-#		print ".Suffix: $i. Prefixes: ", join(' | ', sort @{$prefix{$i} }), ". \n";
+#		print "\tSuffix: $i. Prefixes: ", join(' | ', sort @{$prefix{$i} }), ". \n";
 #	}
-	
+
 	my($lastIndex);
 
 	for $suffix (
@@ -1162,17 +1185,18 @@ sub stem
 				$self -> {'word2'}	= ''
 			}
 
-			# Rule 15: Strip off 'ing'.
+			# Rules 12b and 15: Strip off 'ed' or 'ing'.
 
-			if ($self -> {'rule'} eq '15')
+			if ( ($self -> {'rule'} eq '12b') || ($self -> {'rule'} eq '15') )
 			{
 				# Do we have a monosyllable of this form:
 				# o 0+ Consonants
 				# o 1+ Vowel
-				# o	1 Non-wx
-				# o 1 Non-wx
+				# o	2 Non-wx
+				# Eg: tipped => tipp?
+				# Then return tip and tipp.
 				# Eg: swimming => swimm?
-				# Then return swim and swimm.
+				# Then return tipswim and swimm.
 
 				if ($self -> {'word2'} =~ /^([^aeiou]*[aeiou]+)([^wx])\2$/)
 				{
@@ -1180,7 +1204,7 @@ sub stem
 					$self -> {'word2'} = "$1$2$2";
 				}
 			}
-			
+
 			return ($self -> {'word1'}, $self -> {'word2'}, $suffix, $self -> {'rule'});
 		}
 	}
@@ -1288,5 +1312,9 @@ C<Lingua::EN::Infinitive> was written by Ron Savage I<E<lt>ron@savage.net.auE<gt
 
 =head1 LICENCE
 
-This program is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.
+Australian copyright (c) 1999-2002 Ron Savage.
+
+	All Programs of mine are 'OSI Certified Open Source Software';
+	you can redistribute them and/or modify them under the terms of
+	The Artistic License, a copy of which is available at:
+	http://www.opensource.org/licenses/index.html

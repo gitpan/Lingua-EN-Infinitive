@@ -1,5 +1,15 @@
 Revision history for Perl extension Lingua-EN-Infinitive.
 
+1.06  Tue May 28 18:45:00 2002
+	- Add special code to Infinitive.pm when the suffix is 'ed'.
+		Check for a monosyllable ending in a doubled-consonant.
+		This code is identical to the special code for rule 15
+	- Add some more irregular verbs to the list and test for them
+
+1.05  Sun May 12 13:12:11 2002
+	- Clean up licence and email stuff in all modules, scripts and other docs.
+		Upgrading is not necessary
+
 1.04 19-Jun-2001
 ----------------
 o Patch outcome of rule 15 so certain monosyllables are treated specially.

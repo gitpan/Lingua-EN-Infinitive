@@ -3,7 +3,6 @@
 # Name:
 #	test.pl.
 
-use integer;
 use strict;
 
 use Lingua::EN::Infinitive;
@@ -28,6 +27,8 @@ my($count) = 0;
 
 while (<DATA>)
 {
+	next if (/^#/);
+
 	$count++;
 
 	if ($debug && ( ($count % 20) == 1) )
@@ -61,7 +62,7 @@ while (<DATA>)
 
 	if ( ($expectedStem ne $prefix1) && ($expectedStem ne $prefix2) )
 	{
-		print "Error. No rule matches $word. \n" if ($debug);
+		print "Error. No rule matches $word. Method stem() returned: <$prefix1> <$prefix2> <$suffix> <$rule>. \n" if ($debug);
 		$result = 'not ok';
 	}
 	else
@@ -94,6 +95,19 @@ __DATA__
 11			baker			bake
 11			smaller			small
 12a			curried			curry
+12b			bored			bore
+12b			seated			seat
+# Can't handle these 2 with the special code as for the following 5 because after
+# chopping the suffix, we are not left with a one-syllable word. Ie it's too hard.
+# Yes, that was 5 not 7. Look for the doubled-consonant in the middle of the word.
+# The special code is in Infinitive.pm @ line 1188.
+#12b		bootstrapped	bootstrap
+#12b		bootstrapping	bootstrap
+12b			tipped			tip
+12b			kitted			kit
+12b			capped			cap
+12b			chopped			chop
+12b			curried			curry
 12b			bored			bore
 12b			seated			seat
 13a			flies			fly
@@ -165,3 +179,6 @@ __DATA__
 53			Australian		Australia
 54			Jeffersonian	Jefferson
 irregular	rove			reeve
+irregular	dove			dive
+irregular	snuck			sneak
+irregular	wot				wit
