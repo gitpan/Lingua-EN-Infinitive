@@ -2,19 +2,23 @@ package Lingua::EN::Infinitive;
 
 use integer;
 use strict;
-use vars qw(@EXPORT @EXPORT_OK @ISA);
-use vars qw($VERSION);
+use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
-use Exporter;
+require Exporter;
 
-@ISA		= qw(Exporter);
+@ISA = qw(Exporter);
+
+# Items to export into callers namespace by default. Note: do not export
+# names by default without a very good reason. Use EXPORT_OK instead.
+# Do not simply export all your public functions/methods/constants.
+
 @EXPORT		= qw();
+
 @EXPORT_OK	= qw();
 
-# -------------------------------------------------------------------
+$VERSION	= '1.01';
 
-$VERSION    = '1.00';
-
+# Preloaded methods go here.
 # -------------------------------------------------------------------
 
 sub new
@@ -1162,9 +1166,11 @@ sub stem
 
 #-------------------------------------------------------------------
 
+# Autoload methods go after =cut, and are processed by the autosplit program.
+
 1;
 
-#-------------------------------------------------------------------
+__END__
 
 =head1 NAME
 

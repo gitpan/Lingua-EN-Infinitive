@@ -1,6 +1,5 @@
-MANIFEST
-MANIFEST.SKIP
-Makefile.PL
+Changes.txt
 Infinitive.pm
+Makefile.PL
+MANIFEST
 test.pl
-t/base.t
