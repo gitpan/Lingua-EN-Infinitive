@@ -1,0 +1,6 @@
+MANIFEST
+MANIFEST.SKIP
+Makefile.PL
+Infinitive.pm
+test.pl
+t/base.t
