@@ -16,7 +16,7 @@ require Exporter;
 
 @EXPORT_OK	= qw();
 
-$VERSION	= '1.01';
+$VERSION	= '1.03';
 
 # Preloaded methods go here.
 # -------------------------------------------------------------------
@@ -24,9 +24,10 @@ $VERSION	= '1.01';
 sub new
 {
 	my($class)							= @_;
+	$class								= ref($class) || $class;
 	my($self)							= {};
-	$self -> {'word1'}				= '';
-	$self -> {'word2'}				= '';
+	$self -> {'word1'}					= '';
+	$self -> {'word2'}					= '';
 	$self -> {'suffix'}					= '';
 	$self -> {'rule'}					= '';
 	$self -> {'irregular2infinitive'}	=
@@ -1174,7 +1175,7 @@ __END__
 
 =head1 NAME
 
-C<Lingua::EN::Infinitive.pm> - Determine the infinitive form of a conjugated word
+C<Lingua::EN::Infinitive> - Determine the infinitive form of a conjugated word
 
 =head1 SYNOPSIS
 
@@ -1216,6 +1217,32 @@ words.
 In the hash 'suffix2Rule', you'll see the key 'order'. This specifies the sort order
 in which to check McIlroy's rules. I've changed his ordering in a number of places.
 
+=head1 INSTALLATION
+
+You install C<Lingua::EN::Infinitive>, as you would install any perl module library,
+by running these commands:
+
+	perl Makefile.PL
+	make
+	make test
+	make install
+
+If you want to install a private copy of C<Lingua::EN::Infinitive> in your home
+directory, then you should try to produce the initial Makefile with
+something like this command:
+
+	perl Makefile.PL LIB=~/perl
+		or
+	perl Makefile.PL LIB=C:/Perl/Site/Lib
+
+If, like me, you don't have permission to write man pages into unix system
+directories, use:
+
+	make pure_install
+
+instead of make install. This option is secreted in the middle of p 414 of the
+second edition of the dromedary book.
+
 =head1 WARNING
 
 Don't make the false assumption that
@@ -1233,7 +1260,7 @@ Don't make the false assumption that
 
 =head1 AUTHOR
 
-C<Lingua::EN::Infinitive.pm> was written by Ron Savage I<E<lt>rpsavage@ozemail.com.auE<gt>> in 1998.
+C<Lingua::EN::Infinitive> was written by Ron Savage I<E<lt>rpsavage@ozemail.com.auE<gt>> in 1998.
 
 =head1 LICENCE
 

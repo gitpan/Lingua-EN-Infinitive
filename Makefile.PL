@@ -4,6 +4,11 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile
 (
+	($] ge '5.005') ?
+	(
+		'AUTHOR' => 'Ron Savage (rpsavage@ozemail.com.au)',
+		'ABSTRACT' => 'Find the infinitive form of a conjugated word',
+    ) : (),
 'clean'				=>
 	{
 	'FILES'			=> 'blib/* Makefile MANIFEST Lingua-EN-Infinitive-*'
