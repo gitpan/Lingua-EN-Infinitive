@@ -1,94 +1,56 @@
-NAME
-    "Lingua::EN::Infinitive" - Determine the infinitive form of a conjugated
-    word
+README file for Lingua::EN::Infinitive.
 
-SYNOPSIS
-            use Lingua::EN::Infinitive;
+Warning: WinZip 8.1 and 9.0 both contain an 'accidental' bug which stops
+them recognizing POSIX-style directory structures in valid tar files.
+You are better off using a reliable tool such as InfoZip:
+ftp://ftp.info-zip.org/pub/infozip/
 
-            my($spell) = Lingua::EN::Infinitive -> new();
-            my($word)  = 'rove';
+1 Installing from a Unix-like distro
+------------------------------------
+shell>gunzip Lingua-EN-Infinitive-1.08.tgz
+shell>tar mxvf Lingua-EN-Infinitive-1.08.tar
 
-            # Method 1:
-            my($word1, $word2, $suffix, $rule) = $spell -> stem($word);
+On Unix-like systems, assuming you have installed Module::Build V 0.25+:
 
-            # Method 2:
-            $spell -> stem($word);
-            my($word1, $word2, $suffix, $rule) =
-            (
-                    $spell -> {'word1'},  # A possibility.
-                    $spell -> {'word2'},  # A possibility, or ''.
-                    $spell -> {'suffix'},
-                    $spell -> {'rule'},
-            );
+shell>perl Build.PL
+shell>./Build
+shell>./Build test
+shell>./Build install
 
-            print "Conjugated: $word. Infinitive: $word1. \n";
+On MS Windows-like systems, assuming you have installed Module::Build V 0.25+:
 
-DESCRIPTION
-    Determine the infinitive form of a conjugated word. Also, determine the
-    suffix used to identify which rule to apply to transform the conjugated
-    word into the infinitive form.
+shell>perl Build.PL
+shell>perl Build
+shell>perl Build test
+shell>perl Build install
 
-    Either 1 or 2 possible infinitives are returned. You must check that the
-    first is really an English word. If it is, then it is the result. If it
-    is not valid, then check the second.
+Alternately, without Module::Build, you do this:
 
-    Failure to deconjugate is indicated by $word1 eq ''.
+Note: 'make' on MS Windows-like systems may be called 'nmake' or 'dmake'.
 
-    In general, you can ignore the 3rd and 4th values returned from stem().
+shell>perl Makefile.PL
+shell>make
+shell>make test
+shell>su              (for Unix-like systems)
+shell>make install
+shell>exit            (for Unix-like systems)
 
-    The algorithm is based on McIlroy's article (see below), after first
-    checking for irregular words.
+On all systems:
 
-    In the hash 'suffix2Rule', you'll see the key 'order'. This specifies
-    the sort order in which to check McIlroy's rules. I've changed his
-    ordering in a number of places.
+Run Infinitive.pm through you favourite pod2html translator.
 
-INSTALLATION
-    You install "Lingua::EN::Infinitive", as you would install any perl
-    module library, by running these commands:
+If you are using my fancy-pom2.pl, with its 'default.css' file installed in
+/apache2/htdocs/css/, you'd do:
 
-            perl Makefile.PL
-            make
-            make test
-            make install
+shell>perl fancy-pom2.pl html -css Infinitive.pm > /apache2/htdocs/Infinitive.html
 
-    If you want to install a private copy of "Lingua::EN::Infinitive" in
-    your home directory, then you should try to produce the initial Makefile
-    with something like this command:
+or perhaps something like:
 
-            perl Makefile.PL LIB=~/perl
-                    or
-            perl Makefile.PL LIB=C:/Perl/Site/Lib
+shell>perl fancy-pom2.pl html -css Infinitive.pm > /perl/html/site/lib/Lingua/EN/Infinitive.html
 
-    If, like me, you don't have permission to write man pages into unix
-    system directories, use:
-
-            make pure_install
-
-    instead of make install. This option is secreted in the middle of p 414
-    of the second edition of the dromedary book.
-
-WARNING
-    Don't make the false assumption that
-
-            "$word1$suffix" eq $word
-                    or
-            "$word2$suffix" eq $word
-
-REFERENCE
-            Title:   Development of a Spelling List
-            Author:  M. Douglas McIlroy
-            Journal: IEEE Transactions on Communications
-            Issue:   Vol COM-30, No 1, January 1982
-
-AUTHOR
-    "Lingua::EN::Infinitive" was written by Ron Savage *<ron@savage.net.au>*
-    in 1998.
-
-LICENCE
-    Australian copyright (c) 1999-2002 Ron Savage.
-
-            All Programs of mine are 'OSI Certified Open Source Software';
-            you can redistribute them and/or modify them under the terms of
-            The Artistic License, a copy of which is available at:
-            http://www.opensource.org/licenses/index.html
+2 Installing from an ActiveState distro
+---------------------------------------
+shell>unzip Lingua-EN-Infinitive-1.08.zip
+shell>ppm install --location=. Lingua-EN-Infinitive
+shell>del Lingua-EN-Infinitive-1.08.ppd
+shell>del PPM-Lingua-EN-Infinitive-1.08.tar.gz

@@ -1,0 +1,12 @@
+--- #YAML:1.0
+name: Lingua-EN-Infinitive
+version: 1.08
+author:
+  - Ron Savage <ron@savage.net.au>
+abstract: Determine the infinitive form of a conjugated word
+license: artistic
+build_requires:
+  Test::More: 0
+  Test::Pod: 0
+provides: {}
+generated_by: Module::Build version 0.24

@@ -9,21 +9,22 @@ WriteMakefile
 		'AUTHOR' => 'Ron Savage (ron@savage.net.au)',
 		'ABSTRACT' => 'Find the infinitive form of a conjugated word',
     ) : (),
-'clean'				=>
+	clean			=>
 	{
-	'FILES'			=> 'blib/* Makefile MANIFEST Lingua-EN-Infinitive-*'
+		FILES		=> 'blib/* Makefile MANIFEST Lingua-EN-Infinitive-*'
 	},
-'dist'				=>
+	dist			=>
 	{
-	'COMPRESS'		=> 'gzip',
-	'SUFFIX'		=> 'gz'
+		COMPRESS	=> 'gzip',
+		SUFFIX		=> 'gz'
 	},
-'DISTNAME'			=> 'Lingua-EN-Infinitive',
-'NAME'				=> 'Lingua::EN::Infinitive',
-'PM'				=>
+	DISTNAME		=> 'Lingua-EN-Infinitive',
+	NAME			=> 'Lingua::EN::Infinitive',
+	PL_FILES		=> {},
+	PREREQ_PM		=>
 	{
-	'Infinitive.pm'	=> '$(INST_LIBDIR)/Infinitive.pm',
+		Test::More	=> 0,
+		Test::Pod	=> 0,
 	},
-'PREREQ_PM'			=> {},
-'VERSION_FROM'		=> 'Infinitive.pm'
+	VERSION_FROM	=> 'lib/Lingua/EN/Infinitive.pm'
 );

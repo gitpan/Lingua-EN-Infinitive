@@ -1,7 +1,11 @@
+Build.PL
 Changes.txt
-Infinitive.pm
+lib/Lingua/EN/Infinitive.pm
 Makefile.PL
-test.pl
-Infinitive.html
-MANIFEST
+MANIFEST			This list of files
+MANIFEST.SKIP
+META.yml
 README
+t/pod.t
+t/test.t
+test.pl
