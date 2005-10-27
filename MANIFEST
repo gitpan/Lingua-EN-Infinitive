@@ -4,8 +4,8 @@ lib/Lingua/EN/Infinitive.pm
 Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
-META.yml
 README
 t/pod.t
 t/test.t
 test.pl
+META.yml
