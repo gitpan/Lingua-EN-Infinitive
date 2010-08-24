@@ -1,15 +1,22 @@
---- #YAML:1.0
-name: Lingua-EN-Infinitive
-version: 1.09
+---
+abstract: 'Determine the infinitive form of a conjugated word'
 author:
-  - Ron Savage <ron@savage.net.au>
-abstract: Determine the infinitive form of a conjugated word
-license: artistic
+  - 'Ron Savage <ron@savage.net.au>'
 build_requires:
   Test::More: 0
   Test::Pod: 0
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3607'
+license: artistic
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Lingua-EN-Infinitive
 provides:
   Lingua::EN::Infinitive:
     file: lib/Lingua/EN/Infinitive.pm
-    version: 1.09
-generated_by: Module::Build version 0.2611
+    version: 1.11
+resources:
+  license: http://www.perlfoundation.org/artistic_license_1_0
+version: 1.11
